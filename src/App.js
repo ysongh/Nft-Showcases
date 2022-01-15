@@ -1,10 +1,12 @@
 import React from 'react';
+
 import './App.css';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
     <div className="App">
-      <h1>Nft-Showcases</h1>
+      <Dashboard />
     </div>
   );
 }
