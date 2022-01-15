@@ -5,7 +5,7 @@ import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ padding: '0 50px' }}>
       <Dashboard />
     </div>
   );

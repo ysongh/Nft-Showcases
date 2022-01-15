@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Row, Col, Card, Button, Typography, Image, Input } from 'antd';
 
 import { COVALENT_APIKEY } from '../config';
 
@@ -26,15 +27,24 @@ function Dashboard() {
   }
 
   return (
-    <div>
-      <p>Enter Wallet Address</p>
-      <input value={address} placeholder="0x0" onChange={(e) => setAddress(e.target.value)}/>
-      {userNFTs.map((nft, index) => (
-        <div key={index}>
-          <h1>ID {nft.token_id}</h1>
-          <img src={nft.token_url} alt="NFT Image" />
-        </div>
-      ))}
+    <div style={{ marginTop: "1rem" }}>
+      <p style={{ margin: 0, fontWeight: 'bold' }}>Enter Wallet Address</p>
+      <Input value={address} placeholder="0x0" onChange={(e) => setAddress(e.target.value)} style={{ maxWidth: '500px' }} />
+      <br />
+      <br />
+      <Row gutter={[16, 16]}>
+        {userNFTs.map((nft, index) => (
+          <Col xs={24} sm={12} md={8} lg={6} key={index}>
+            <Card
+              hoverable
+              cover={<Image alt="NFT Image" src={nft.token_url} />}
+            >
+              <Card.Meta title={nft.token_id}/>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+      
     </div>
   )
 }
