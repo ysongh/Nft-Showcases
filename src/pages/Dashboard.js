@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Card, Select, Image, Typography, Input, Spin } from 'antd';
+import { Row, Select, Typography, Input, Spin } from 'antd';
 
 import { COVALENT_APIKEY } from '../config';
+import NFTCard from '../components/NFTCard';
 
 function Dashboard() {
   const [address, setAddress] = useState("");
@@ -18,11 +19,13 @@ function Dashboard() {
       setNFTLoading(true);
       const nft = await fetch(`https://api.covalenthq.com/v1/${type}/address/${address}/balances_v2/?nft=true&key=${COVALENT_APIKEY}`);
       const { data } = await nft.json();
-      console.log(data);
+
       let nftData = [];
       data.items.forEach(item => {
         if(item.nft_data) nftData = nftData.concat(item.nft_data);
       });
+
+      console.log(nftData);
       setUserNFTs(nftData || []);
       setNFTLoading(false);
     } catch(error) {
@@ -35,6 +38,18 @@ function Dashboard() {
   const changeType = value => {
     console.log(`selected ${value}`);
     setType(value);
+  }
+
+  const getURLImage = url => {
+    if(!url) return null;
+
+    if(url.startsWith("http")){
+      return url;
+    }
+    else{
+      return `https://${url}.ipfs.dweb.link/`
+    }
+
   }
 
   return (
@@ -61,18 +76,11 @@ function Dashboard() {
       <br />
       <br />
       {nftLoading
-        ?  <Spin className="spinner" size="large" />
+        ? <Spin className="spinner" size="large" />
         : <Row gutter={[16, 16]}>
             {userNFTs.length
               ? userNFTs.map((nft, index) => (
-                  <Col xs={24} sm={12} md={8} lg={6} key={index}>
-                    <Card
-                      hoverable
-                      cover={<Image alt="NFT Image" src={nft.token_url} />}
-                    >
-                      <Card.Meta title={nft.token_id}/>
-                    </Card>
-                  </Col>
+                  <NFTCard key={index} nftdata={nft} />
                 ))
               : <Typography.Text type="danger" className="nonfts-message">No NFTs for this address</Typography.Text>
           }
