@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Card, Select, Image, Typography, Input } from 'antd';
+import { Row, Col, Card, Select, Image, Typography, Input, Spin } from 'antd';
 
 import { COVALENT_APIKEY } from '../config';
 
@@ -7,6 +7,7 @@ function Dashboard() {
   const [address, setAddress] = useState("");
   const [type, setType] = useState("137");
   const [userNFTs, setUserNFTs] = useState([]);
+  const [nftLoading, setNFTLoading] = useState(false);
 
   useEffect(() => {
     if(address.length === 42) loadMyCollection();
@@ -14,6 +15,7 @@ function Dashboard() {
 
   const loadMyCollection = async () => {
     try{
+      setNFTLoading(true);
       const nft = await fetch(`https://api.covalenthq.com/v1/${type}/address/${address}/balances_v2/?nft=true&key=${COVALENT_APIKEY}`);
       const { data } = await nft.json();
       console.log(data);
@@ -22,8 +24,10 @@ function Dashboard() {
         if(item.nft_data) nftData = nftData.concat(item.nft_data);
       });
       setUserNFTs(nftData || []);
+      setNFTLoading(false);
     } catch(error) {
       console.error(error);
+      setNFTLoading(false);
     }
   }
 
@@ -56,21 +60,24 @@ function Dashboard() {
       </Select>
       <br />
       <br />
-      <Row gutter={[16, 16]}>
-        {userNFTs.length
-          ? userNFTs.map((nft, index) => (
-              <Col xs={24} sm={12} md={8} lg={6} key={index}>
-                <Card
-                  hoverable
-                  cover={<Image alt="NFT Image" src={nft.token_url} />}
-                >
-                  <Card.Meta title={nft.token_id}/>
-                </Card>
-              </Col>
-            ))
-          : <Typography.Text type="danger" className="nonfts-message">No NFTs for this address</Typography.Text>
-        }
-      </Row>
+      {nftLoading
+        ?  <Spin className="spinner" size="large" />
+        : <Row gutter={[16, 16]}>
+            {userNFTs.length
+              ? userNFTs.map((nft, index) => (
+                  <Col xs={24} sm={12} md={8} lg={6} key={index}>
+                    <Card
+                      hoverable
+                      cover={<Image alt="NFT Image" src={nft.token_url} />}
+                    >
+                      <Card.Meta title={nft.token_id}/>
+                    </Card>
+                  </Col>
+                ))
+              : <Typography.Text type="danger" className="nonfts-message">No NFTs for this address</Typography.Text>
+          }
+          </Row>
+      }
     </div>
   )
 }
