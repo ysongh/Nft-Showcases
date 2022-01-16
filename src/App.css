@@ -20,6 +20,11 @@
     font-size: 2rem;
 }
 
+.card-image {
+    height: 225px;
+    object-fit: contain;
+}
+
 .ant-card-body {
     padding: 0 24px 24px 24px !important;
 }
