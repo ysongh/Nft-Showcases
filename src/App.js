@@ -6,19 +6,18 @@ import Navbar from './components/layout/Navbar';
 import Dashboard from './pages/Dashboard';
 
 function App() {
-  const [address, setAddress] = useState("");
-  const [type, setType] = useState("137");
+  const [userNFTs, setUserNFTs] = useState([]);
+  const [nftLoading, setNFTLoading] = useState(false);
 
   return (
     <Layout className="layout">
       <Navbar
-        address={address}
-        setAddress={setAddress}
-        setType={setType} />
+        setUserNFTs={setUserNFTs}
+        setNFTLoading={setNFTLoading}/>
       <Layout.Content style={{ padding: '0 55px', minHeight: '100vh' }}>
         <Dashboard
-          address={address}
-          type={type} />
+          userNFTs={userNFTs}
+          nftLoading={nftLoading} />
       </Layout.Content>
     </Layout>
   );

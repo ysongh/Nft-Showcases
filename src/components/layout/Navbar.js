@@ -1,18 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout, Menu, Input, Select } from 'antd';
 
-function Navbar({ address, setAddress, setType}) {
+import { COVALENT_APIKEY } from '../../config';
+
+function Navbar({ setUserNFTs, setNFTLoading }) {
+  const [type, setType] = useState("137");
+
+  const loadMyCollection = async address => {
+    try{
+      setNFTLoading(true);
+      const nft = await fetch(`https://api.covalenthq.com/v1/${type}/address/${address}/balances_v2/?nft=true&key=${COVALENT_APIKEY}`);
+      const { data } = await nft.json();
+      console.log(data);
+
+      let nftData = [];
+      data.items.forEach(item => {
+        if(item.nft_data) nftData = nftData.concat(item.nft_data);
+      });
+
+      console.log(nftData);
+      setUserNFTs(nftData || []);
+      setNFTLoading(false);
+    } catch(error) {
+      console.error(error);
+      setNFTLoading(false);
+    }
+  }
+
   const changeType = value => {
     console.log(`selected ${value}`);
     setType(value);
   }
+
+  const onSearch = value => {
+    console.log(value)
+    loadMyCollection(value);
+  };
 
   return (
     <Layout.Header className="primary-bg-color" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <Menu className="primary-bg-color" mode="horizontal" style={{ flex: 2 }}>
         <Menu.Item key="1" className="logo secondary-color">NFT Showcases</Menu.Item>
       </Menu>
-      <Input value={address} placeholder="0x0" onChange={(e) => setAddress(e.target.value)} style={{ maxWidth: '500px' }} />
       <Select
         placeholder="Select a Network"
         optionFilterProp="children"
@@ -30,6 +59,7 @@ function Navbar({ address, setAddress, setType}) {
         <Select.Option value="56">Binance Smart Chain</Select.Option>
         <Select.Option value="97">Binance Smart Chain Testnet</Select.Option>
       </Select>
+      <Input.Search placeholder="Find NFTs by address" onSearch={onSearch} style={{ maxWidth: '400px' }} enterButton/>
     </Layout.Header>
   )
 }
