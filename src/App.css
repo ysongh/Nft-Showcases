@@ -25,6 +25,21 @@
     object-fit: contain;
 }
 
+.table-p {
+    white-space: nowrap; 
+    width: 300px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+
+.table-url {
+    white-space: nowrap; 
+    width: 450px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .ant-card-body {
     padding: 0 24px 24px 24px !important;
 }
