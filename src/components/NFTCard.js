@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import { Col, Card, Tabs, Image } from 'antd';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Col, Card, Tabs, Image, Button } from 'antd';
 
 import { explorerURL } from '../utils/explorer';
 
 function NFTCard({ nftdata }) {
+  const navigate = useNavigate();
+
   const getURLImage = url => {
     if(url.startsWith("http")){
       return url;
@@ -25,6 +28,9 @@ function NFTCard({ nftdata }) {
             <p>Contract Address: <a href={explorerURL[nftdata.chain_id] + nftdata.contract_address} target="_blank" rel="noopener noreferrer">
               {nftdata.contract_address.substring(0,5) + "..." + nftdata.contract_address.substring(37,42)}
             </a></p>
+            <Button type="primary" onClick={() => navigate(`/contract/${nftdata.contract_address}`)}>
+              View all NFTs minted
+            </Button>
           </Tabs.TabPane>
 
           <Tabs.TabPane tab="NFT Data" key="2">
