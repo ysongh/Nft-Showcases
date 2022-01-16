@@ -20,6 +20,7 @@ function Navbar({ setUserNFTs, setNFTLoading }) {
             nft.contract_address = item.contract_address;
             nft.contract_name = item.contract_name;
             nft.contract_ticker_symbol = item.contract_ticker_symbol;
+            nft.chain_id = data.chain_id;
           })
           nftData = nftData.concat(item.nft_data);
         }

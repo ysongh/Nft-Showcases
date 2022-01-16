@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Col, Card, Tabs, Image } from 'antd';
 
+import { explorerURL } from '../utils/explorer';
+
 function NFTCard({ nftdata }) {
   const getURLImage = url => {
     if(url.startsWith("http")){
@@ -20,14 +22,15 @@ function NFTCard({ nftdata }) {
         <Tabs defaultActiveKey="1">
           <Tabs.TabPane tab="Contract Info" key="1">
             <Card.Meta title={`${nftdata.contract_name} (${nftdata.contract_ticker_symbol})`} description={`Id: ${nftdata.token_id}`} />
-            <h4>{nftdata.contract_address}</h4>
+            <p>Contract Address: <a href={explorerURL[nftdata.chain_id] + nftdata.contract_address} target="_blank" rel="noopener noreferrer">
+              {nftdata.contract_address.substring(0,5) + "..." + nftdata.contract_address.substring(37,42)}
+            </a></p>
           </Tabs.TabPane>
 
           <Tabs.TabPane tab="NFT Data" key="2">
             {nftdata.external_data.image
               ? <>
                   <Card.Meta title={nftdata.external_data.name} description={nftdata.external_data.description} />
-                  <p>{nftdata.contract_address}</p>
                 </>
               : <p>None</p>
             }
