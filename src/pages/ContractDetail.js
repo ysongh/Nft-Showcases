@@ -12,7 +12,7 @@ function ContractDetail({ type }) {
   useEffect(() => {
     if(contractaddress){
       getContractInfo();
-      //getContractNFTs();
+      getContractNFTs();
     }
   }, [contractaddress])
 
