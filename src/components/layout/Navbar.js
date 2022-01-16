@@ -15,7 +15,12 @@ function Navbar({ setUserNFTs, setNFTLoading }) {
 
       let nftData = [];
       data.items.forEach(item => {
-        if(item.nft_data) nftData = nftData.concat(item.nft_data);
+        if(item.nft_data){
+          item.nft_data.forEach(nft => {
+            nft.contract_address = item.contract_address;
+          })
+          nftData = nftData.concat(item.nft_data);
+        }
       });
 
       console.log(nftData);
