@@ -1,6 +1,19 @@
+.primary-bg-color{
+    background-color: #9de6e8;
+}
+
+.secondary-color {
+    color: #068b78;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
 .spinner {
     display: block;
-    margin: 2rem auto;
+    margin: 5rem auto;
 }
 
 .nonfts-message {
