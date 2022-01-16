@@ -8,21 +8,24 @@ import Dashboard from './pages/Dashboard';
 import ContractDetail from './pages/ContractDetail';
 
 function App() {
+  const [type, setType] = useState("137");
   const [userNFTs, setUserNFTs] = useState([]);
   const [nftLoading, setNFTLoading] = useState(false);
 
   return (
     <Layout className="layout">
       <Navbar
+        type={type}
         setUserNFTs={setUserNFTs}
-        setNFTLoading={setNFTLoading}/>
+        setNFTLoading={setNFTLoading}
+        setType={setType} />
       <Layout.Content style={{ padding: '0 55px', minHeight: '100vh' }}>
         <HashRouter>
           <Routes>
             <Route
               path="/contract/:contractaddress"
               element={
-                <ContractDetail />} />
+                <ContractDetail type={type} />} />
             <Route
               path="/"
               element={

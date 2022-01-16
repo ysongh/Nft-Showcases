@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Layout, Menu, Input, Select } from 'antd';
 
 import { COVALENT_APIKEY } from '../../config';
 
-function Navbar({ setUserNFTs, setNFTLoading }) {
-  const [type, setType] = useState("137");
-
+function Navbar({ type, setUserNFTs, setNFTLoading, setType }) {
   const loadMyCollection = async address => {
     try{
       setNFTLoading(true);
@@ -48,7 +46,9 @@ function Navbar({ setUserNFTs, setNFTLoading }) {
   return (
     <Layout.Header className="primary-bg-color" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <Menu className="primary-bg-color" mode="horizontal" style={{ flex: 2 }}>
-        <Menu.Item key="1" className="logo secondary-color">NFT Showcases</Menu.Item>
+        <Menu.Item key="1" className="logo secondary-color">
+          <a href="/">NFT Showcases</a>
+        </Menu.Item>
       </Menu>
       <Select
         placeholder="Select a Network"
