@@ -18,6 +18,8 @@ function Navbar({ setUserNFTs, setNFTLoading }) {
         if(item.nft_data){
           item.nft_data.forEach(nft => {
             nft.contract_address = item.contract_address;
+            nft.contract_name = item.contract_name;
+            nft.contract_ticker_symbol = item.contract_ticker_symbol;
           })
           nftData = nftData.concat(item.nft_data);
         }

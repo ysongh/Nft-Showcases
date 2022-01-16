@@ -19,8 +19,8 @@ function NFTCard({ nftdata }) {
       >
         <Tabs defaultActiveKey="1">
           <Tabs.TabPane tab="Contract Info" key="1">
+            <Card.Meta title={`${nftdata.contract_name} (${nftdata.contract_ticker_symbol})`} description={`Id: ${nftdata.token_id}`} />
             <h4>{nftdata.contract_address}</h4>
-            <p>Id: {nftdata.token_id}</p>
           </Tabs.TabPane>
 
           <Tabs.TabPane tab="NFT Data" key="2">

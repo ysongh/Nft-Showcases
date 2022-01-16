@@ -5,7 +5,7 @@ import NFTCard from '../components/NFTCard';
 
 function Dashboard({ userNFTs, nftLoading }) {
   return (
-    <div style={{ marginTop: "2rem" }}>
+    <div style={{ margin: "2rem 0" }}>
       {nftLoading
         ? <Spin className="spinner" size="large" />
         : <Row gutter={[16, 16]}>
