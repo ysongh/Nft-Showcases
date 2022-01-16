@@ -19,6 +19,7 @@ function Dashboard() {
       setNFTLoading(true);
       const nft = await fetch(`https://api.covalenthq.com/v1/${type}/address/${address}/balances_v2/?nft=true&key=${COVALENT_APIKEY}`);
       const { data } = await nft.json();
+      console.log(data);
 
       let nftData = [];
       data.items.forEach(item => {
