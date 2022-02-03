@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { Layout, Input, Select } from 'antd';
 
 import { COVALENT_APIKEY } from '../../config';
+import { explorerIcon } from '../../utils/explorer';
 
-function Navbar({ type, setUserNFTs, setNFTLoading, setType }) {
+function Navbar({ type, setUserNFTs, setNFTLoading, setType, setChainIconURL }) {
   const loadMyCollection = async address => {
     try{
       setNFTLoading(true);
@@ -40,7 +41,8 @@ function Navbar({ type, setUserNFTs, setNFTLoading, setType }) {
   }
 
   const onSearch = value => {
-    console.log(value)
+    console.log(value);
+    setChainIconURL(explorerIcon[type]);
     loadMyCollection(value);
   };
 

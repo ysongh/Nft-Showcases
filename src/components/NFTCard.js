@@ -4,7 +4,7 @@ import { Col, Card, Tabs, Image, Button } from 'antd';
 
 import { explorerURL } from '../utils/explorer';
 
-function NFTCard({ nftdata }) {
+function NFTCard({ nftdata, chainIconURL }) {
   const navigate = useNavigate();
 
   const getURLImage = url => {
@@ -19,6 +19,7 @@ function NFTCard({ nftdata }) {
   return (
     <Col xs={24} sm={12} md={8} lg={6}>
       <Card
+        style={{ position: "relative" }}
         hoverable
         cover={<Image className="card-image" alt="NFT Image" src={nftdata.external_data.image ? nftdata.external_data.image : getURLImage(nftdata.token_url)} />}
       >
@@ -42,6 +43,7 @@ function NFTCard({ nftdata }) {
             }
           </Tabs.TabPane>
         </Tabs>
+        <img className="chain-icon" src={chainIconURL} />
       </Card>
     </Col>
   )

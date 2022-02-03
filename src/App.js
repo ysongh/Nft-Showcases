@@ -11,6 +11,7 @@ function App() {
   const [type, setType] = useState("137");
   const [userNFTs, setUserNFTs] = useState([]);
   const [nftLoading, setNFTLoading] = useState(false);
+  const [chainIconURL, setChainIconURL] = useState("");
 
   return (
     <HashRouter>
@@ -19,7 +20,8 @@ function App() {
           type={type}
           setUserNFTs={setUserNFTs}
           setNFTLoading={setNFTLoading}
-          setType={setType} />
+          setType={setType}
+          setChainIconURL={setChainIconURL} />
         <Layout.Content style={{ padding: '0 55px', minHeight: '100vh' }}>
           <Routes>
             <Route
@@ -31,7 +33,8 @@ function App() {
               element={
                 <Dashboard
                   userNFTs={userNFTs}
-                  nftLoading={nftLoading} />} />
+                  nftLoading={nftLoading}
+                  chainIconURL={chainIconURL} />} />
           </Routes>
         </Layout.Content>
       </Layout>
