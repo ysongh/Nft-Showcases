@@ -13,14 +13,14 @@ function App() {
   const [nftLoading, setNFTLoading] = useState(false);
 
   return (
-    <Layout className="layout">
-      <Navbar
-        type={type}
-        setUserNFTs={setUserNFTs}
-        setNFTLoading={setNFTLoading}
-        setType={setType} />
-      <Layout.Content style={{ padding: '0 55px', minHeight: '100vh' }}>
-        <HashRouter>
+    <HashRouter>
+      <Layout className="layout">
+        <Navbar
+          type={type}
+          setUserNFTs={setUserNFTs}
+          setNFTLoading={setNFTLoading}
+          setType={setType} />
+        <Layout.Content style={{ padding: '0 55px', minHeight: '100vh' }}>
           <Routes>
             <Route
               path="/contract/:contractaddress"
@@ -33,9 +33,9 @@ function App() {
                   userNFTs={userNFTs}
                   nftLoading={nftLoading} />} />
           </Routes>
-        </HashRouter>
-      </Layout.Content>
-    </Layout>
+        </Layout.Content>
+      </Layout>
+    </HashRouter>
   );
 }
 

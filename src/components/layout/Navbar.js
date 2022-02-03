@@ -1,5 +1,6 @@
 import React from 'react';
-import { Layout, Menu, Input, Select } from 'antd';
+import { Link } from 'react-router-dom';
+import { Layout, Input, Select } from 'antd';
 
 import { COVALENT_APIKEY } from '../../config';
 
@@ -45,11 +46,9 @@ function Navbar({ type, setUserNFTs, setNFTLoading, setType }) {
 
   return (
     <Layout.Header className="primary-bg-color" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      <Menu className="primary-bg-color" mode="horizontal" style={{ flex: 2 }}>
-        <Menu.Item key="1" className="logo secondary-color">
-          <a href="/">NFT Showcases</a>
-        </Menu.Item>
-      </Menu>
+      <Link to="/" className="logo secondary-color" style={{ flex: 2 }}>
+        NFT Showcases
+      </Link>
       <Select
         placeholder="Select a Network"
         optionFilterProp="children"
