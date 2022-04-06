@@ -11,6 +11,17 @@
     font-weight: bolder;
 }
 
+.main-layout {
+    padding: 0 55px;
+    min-height: 100vh;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .chain-icon {
     position: absolute;
     width: 40px;
@@ -52,4 +63,19 @@
 
 .ant-card-body {
     padding: 0 24px 24px 24px !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        height: 7rem;
+        padding-bottom: 1rem;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    .main-layout {
+        padding: 0 20px;
+    }
 }

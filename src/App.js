@@ -22,7 +22,7 @@ function App() {
           setNFTLoading={setNFTLoading}
           setType={setType}
           setChainIconURL={setChainIconURL} />
-        <Layout.Content style={{ padding: '0 55px', minHeight: '100vh' }}>
+        <Layout.Content className="main-layout">
           <Routes>
             <Route
               path="/contract/:contractaddress"
