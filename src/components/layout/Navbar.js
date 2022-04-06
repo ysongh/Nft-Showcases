@@ -68,7 +68,7 @@ function Navbar({ type, setUserNFTs, setNFTLoading, setType, setChainIconURL }) 
         <Select.Option value="56">Binance Smart Chain</Select.Option>
         <Select.Option value="97">Binance Smart Chain Testnet</Select.Option>
       </Select>
-      <Input.Search placeholder="Find NFTs by address" onSearch={onSearch} style={{ maxWidth: '400px' }} enterButton/>
+      <Input.Search placeholder="Find NFTs by address" onSearch={onSearch} style={{ maxWidth: '300px' }} enterButton/>
     </Layout.Header>
   )
 }
