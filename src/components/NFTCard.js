@@ -17,7 +17,7 @@ function NFTCard({ nftdata, chainIconURL }) {
   }
 
   return (
-    <Col xs={24} sm={12} md={8} lg={6}>
+    <Col xs={12} md={8} lg={6}>
       <Card
         style={{ position: "relative" }}
         hoverable
